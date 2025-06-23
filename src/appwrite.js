@@ -33,3 +33,15 @@ export const updateSearchCount = async (searchTerm, movie) => {
     console.log(error);
   }
 };
+
+export const getTrendingMovies = async () => {
+  try {
+    const results = await datebase.listDocuments(DATABASE_ID, COLLECTION_ID, [
+      Query.limit(5),
+      Query.orderDesc("count"),
+    ]);
+    return results.documents;
+  } catch (error) {
+    console.log(error);
+  }
+};
